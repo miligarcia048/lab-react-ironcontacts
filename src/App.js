@@ -8,9 +8,14 @@ function App() {
   );
   const handleAddRandom = () => {
     const newRandomContact =
-      contactsArray[Math.floor(Math.random() * contactsArray.length)];
+      contactsArrayFile[Math.floor(Math.random() * contactsArrayFile.length)];
 
-    setContactsArray([...contactsArray, newRandomContact]);
+    //check if it exists already
+    if (contactsArray.find((element) => element.id === newRandomContact.id)) {
+      handleAddRandom();
+    } else {
+      setContactsArray([...contactsArray, newRandomContact]);
+    }
   };
 
   const handleSortName = () => {
